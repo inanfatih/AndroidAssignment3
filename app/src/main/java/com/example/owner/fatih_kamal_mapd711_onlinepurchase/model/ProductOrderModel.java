@@ -162,7 +162,14 @@ public class ProductOrderModel {
             }
 
             // Populatin Customer Information
+            Boolean isFirstCustomerProcessed = false;
             while (cCustomers.moveToNext()) {
+                if(isFirstCustomerProcessed==false)
+                {
+                    cCustomers.moveToFirst();
+                    isFirstCustomerProcessed=true;
+                }
+
                 String _custID = cCustomers.getString(cCustomers.getColumnIndex(PurchaseContract.CustomerEntry._ID));
 
                 if (_custID.equals(oCustId)) {
